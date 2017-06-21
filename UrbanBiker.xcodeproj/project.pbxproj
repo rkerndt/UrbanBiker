@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0525033CA63FCE7C4EF57C7A /* libPods-UrbanBiker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF92733E9F436B3C75B0FC2 /* libPods-UrbanBiker.a */; };
 		712F181C1EF9F20B00EEECFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 712F181B1EF9F20B00EEECFA /* Images.xcassets */; };
+		712F18231EFAF0CE00EEECFA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 712F18221EFAF0CE00EEECFA /* Podfile */; };
 		718D1C0D1EF9CAB800230241 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D1C0C1EF9CAB800230241 /* AppDelegate.swift */; };
 		718D1C0F1EF9CAB800230241 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D1C0E1EF9CAB800230241 /* ViewController.swift */; };
 		718D1C121EF9CAB800230241 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C101EF9CAB800230241 /* Main.storyboard */; };
@@ -42,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		712F181B1EF9F20B00EEECFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		712F18221EFAF0CE00EEECFA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		718D1C091EF9CAB800230241 /* UrbanBiker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrbanBiker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		718D1C0C1EF9CAB800230241 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718D1C0E1EF9CAB800230241 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +64,9 @@
 		718D1C541EF9EBB500230241 /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		718D1C551EF9EBB500230241 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		718D1C561EF9EBB500230241 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
+		97E99FF1B263CEE5E7EF45B3 /* Pods-UrbanBiker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrbanBiker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UrbanBiker/Pods-UrbanBiker.release.xcconfig"; sourceTree = "<group>"; };
+		B4142D7DAAC80B8127EEC402 /* Pods-UrbanBiker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrbanBiker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UrbanBiker/Pods-UrbanBiker.debug.xcconfig"; sourceTree = "<group>"; };
+		DEF92733E9F436B3C75B0FC2 /* libPods-UrbanBiker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UrbanBiker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0525033CA63FCE7C4EF57C7A /* libPods-UrbanBiker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +95,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		718D1C001EF9CAB800230241 = {
+		3AEB7B21E201D9B71C1396FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4142D7DAAC80B8127EEC402 /* Pods-UrbanBiker.debug.xcconfig */,
+				97E99FF1B263CEE5E7EF45B3 /* Pods-UrbanBiker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		712F18241EFAF17000EEECFA /* App's_Image */ = {
 			isa = PBXGroup;
 			children = (
 				718D1C541EF9EBB500230241 /* iTunesArtwork@1x.png */,
@@ -97,10 +113,21 @@
 				718D1C521EF9E63500230241 /* bicycle300.png */,
 				718D1C501EF9E2D100230241 /* stop_red.png */,
 				718D1C4C1EF9E2B500230241 /* run.png */,
+			);
+			name = "App's_Image";
+			sourceTree = "<group>";
+		};
+		718D1C001EF9CAB800230241 = {
+			isa = PBXGroup;
+			children = (
+				712F18221EFAF0CE00EEECFA /* Podfile */,
+				712F18241EFAF17000EEECFA /* App's_Image */,
 				718D1C0B1EF9CAB800230241 /* UrbanBiker */,
 				718D1C231EF9CAB800230241 /* UrbanBikerTests */,
 				718D1C2E1EF9CAB800230241 /* UrbanBikerUITests */,
 				718D1C0A1EF9CAB800230241 /* Products */,
+				3AEB7B21E201D9B71C1396FA /* Pods */,
+				F4362DD6DE8723236B4812EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +173,14 @@
 			path = UrbanBikerUITests;
 			sourceTree = "<group>";
 		};
+		F4362DD6DE8723236B4812EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DEF92733E9F436B3C75B0FC2 /* libPods-UrbanBiker.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,9 +188,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 718D1C341EF9CAB800230241 /* Build configuration list for PBXNativeTarget "UrbanBiker" */;
 			buildPhases = (
+				516AFD482168F0117C8045ED /* [CP] Check Pods Manifest.lock */,
 				718D1C051EF9CAB800230241 /* Sources */,
 				718D1C061EF9CAB800230241 /* Frameworks */,
 				718D1C071EF9CAB800230241 /* Resources */,
+				92090347B941148C2D44DAD6 /* [CP] Embed Pods Frameworks */,
+				D0EA9666BB7824E253978638 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712F18231EFAF0CE00EEECFA /* Podfile in Resources */,
 				712F181C1EF9F20B00EEECFA /* Images.xcassets in Resources */,
 				718D1C1A1EF9CAB800230241 /* LaunchScreen.storyboard in Resources */,
 				718D1C531EF9E63500230241 /* bicycle300.png in Resources */,
@@ -283,6 +322,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		516AFD482168F0117C8045ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		92090347B941148C2D44DAD6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UrbanBiker/Pods-UrbanBiker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0EA9666BB7824E253978638 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UrbanBiker/Pods-UrbanBiker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		718D1C051EF9CAB800230241 /* Sources */ = {
@@ -441,6 +528,7 @@
 		};
 		718D1C351EF9CAB800230241 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4142D7DAAC80B8127EEC402 /* Pods-UrbanBiker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -456,6 +544,7 @@
 		};
 		718D1C361EF9CAB800230241 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97E99FF1B263CEE5E7EF45B3 /* Pods-UrbanBiker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

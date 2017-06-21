@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 class ViewController: UIViewController {
 
@@ -43,7 +45,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        GMSServices.provideAPIKey("AIzaSyAxw61PISZuIsvoTogOGGymnQeH5qC8kh0")
+        GMSPlacesClient.provideAPIKey("AIzaSyAxw61PISZuIsvoTogOGGymnQeH5qC8kh0")
+        
+        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 5.5)
+        let mapView = GMSMapView.map(withFrame: CGRect(x: 100, y: 100, width: 300, height: 300), camera: camera)
+        mapView.center = self.view.center
+        
+        self.view.addSubview(mapView)
+
+        
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+        marker.title = "Sydney"
+        marker.snippet = "Australia"
+        
+        
         
     }
 
