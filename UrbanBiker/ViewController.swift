@@ -84,6 +84,17 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        }
+            // authorization were denied
+        else if CLLocationManager.authorizationStatus() == .denied {
+            showAlert("Location services were previously denied. Please enable location services for this app in Settings.")
+        }
+            // we do have authorization
+        else if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
         
     }
     
@@ -193,7 +204,14 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         
     }
 
-    
+    func showAlert(_ title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
     
     func Mapview_setup(){
