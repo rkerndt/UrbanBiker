@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C187E41A54FA69F43D90DE3EAE5904056D3A0D1B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C187E41A54FA69F43D90DE3EAE5904056D3A0D1B" : 9223372036854775807,
+    "11596C9DAB15D8A4312A7C34EDD3C28271675322" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5186A1EC-972D-4986-BBF2-6AF20DC5C68E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C187E41A54FA69F43D90DE3EAE5904056D3A0D1B" : "UrbanBiker\/",
+    "11596C9DAB15D8A4312A7C34EDD3C28271675322" : "GeoTargeting-demo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "UrbanBiker",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "UrbanBiker.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/EugeneTrapeznikov\/GeoTargeting-demo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "11596C9DAB15D8A4312A7C34EDD3C28271675322"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zimingg\/UrbanBiker.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C187E41A54FA69F43D90DE3EAE5904056D3A0D1B"
+    }
+  ]
+}

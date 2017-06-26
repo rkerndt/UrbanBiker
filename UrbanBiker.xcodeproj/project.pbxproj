@@ -47,6 +47,7 @@
 /* Begin PBXFileReference section */
 		712F181B1EF9F20B00EEECFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		712F18221EFAF0CE00EEECFA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		71590BE31F017DB700F55E67 /* America.gpx */ = {isa = PBXFileReference; lastKnownFileType = file; name = America.gpx; path = ../../America.gpx; sourceTree = "<group>"; };
 		718D1C091EF9CAB800230241 /* UrbanBiker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrbanBiker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		718D1C0C1EF9CAB800230241 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718D1C0E1EF9CAB800230241 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +150,7 @@
 		718D1C0B1EF9CAB800230241 /* UrbanBiker */ = {
 			isa = PBXGroup;
 			children = (
+				71590BE31F017DB700F55E67 /* America.gpx */,
 				718D1C0C1EF9CAB800230241 /* AppDelegate.swift */,
 				718D1C0E1EF9CAB800230241 /* ViewController.swift */,
 				718D1C101EF9CAB800230241 /* Main.storyboard */,
