@@ -10,6 +10,8 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import CoreLocation
+import AudioToolbox.AudioServices
+
 
 class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDelegate {
    
@@ -22,8 +24,11 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
 
     //This part is to set the signal light center and add any other positions there
-    var signal_light_center = CLLocation(latitude: 44.045489, longitude: -123.071530)
+    //var signal_light_center = CLLocation(latitude: 44.045489, longitude: -123.071530)
     let America = CLLocation(latitude: 37.703026, longitude: -121.759735)
+    let alder = CLLocation(latitude: 44.040017, longitude: -123.080197)
+    let front_dechets = CLLocation(latitude: 44.045491, longitude: -123.071537)
+
     //end
     
     
@@ -31,16 +36,23 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     
     //This part is to set the triger1 and triger2 and then the map will draw tow circles according to those parameters.
-    let triger1 = 500.0
-    let triger2 = 300.0
+    //let triger1 = 500.0
+    //let triger2 = 300.5
     //end
     
+
     //This part is to create some variables which will be used in later's functions. No needs to change this part.
     var state = 0
     var triger_count = 0
-    var DataPakage_Course = 0.0
-    var DataPakage_coordnate = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
-    var DataPakage_Distance = 0.0
+//    var DataPakage_Course = 0.0
+//    var DataPakage_coordnate = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
+//    var DataPakage_Distance = 0.0
+    var The_Direction_to_change_light_for = ""
+    
+    
+    var Data : DataPakage = DataPakage()
+    
+    var Signal_Light : SignalLight = SignalLight.init(triger1: 20.0, triger2: 7.5, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0)
     //end
     
     
@@ -76,7 +88,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signal_light_center = America
+        Signal_Light.revise_Signal_light_center(new: alder)
         Mapview_setup()
         setupData()
        
@@ -126,6 +138,56 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         }
     }
     
+    func state_check(){
+        if state == 0{
+            if Data.get_distance() < Signal_Light.get_TrigerOne(){
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                state = 1
+            }
+        }
+        if state != 0 {
+            if Data.get_distance() > Signal_Light.get_TrigerOne(){
+                state = 0
+            }
+            if Data.get_distance() < Signal_Light.get_TrigerTwo(){
+                if triger_count == 0{
+                    state = 1
+                    triger_count += 1
+                }
+            }
+            if Data.get_distance() > Signal_Light.get_TrigerTwo() &&  triger_count == 1{
+                state = 2
+                triger_count = 0
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            }
+        }
+
+    }
+    
+    func Stop_direction_check(){
+        
+        if Data.get_course() < 45.0 && Data.get_course() > 315.0{
+            The_Direction_to_change_light_for = "North"
+            
+        }
+        else if Data.get_course() < 225.0 && Data.get_course() > 135.0{
+            The_Direction_to_change_light_for = "South"
+            
+        }
+            
+        else if Data.get_course() < 135.0 && Data.get_course() > 45.0{
+            The_Direction_to_change_light_for = "West"
+            
+        }
+            
+        else if Data.get_course() < 315.0 && Data.get_course() > 225.0{
+            The_Direction_to_change_light_for = "East"
+        }
+        
+
+    }
     
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -133,40 +195,34 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         let location = locations.last
        
         
-        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:15)
+        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:30)
         Mapview.animate(to: camera)
         
-        //print(float(location?.distance(from: CLLocation(latitude: 37.703026, longitude: -121.759735) )))
         if let a = location?.course{
-            DataPakage_Course = Double(a)
+            
+            Data.revise_course(newCourse: Double(a))
         }
-        DataPakage_coordnate = (location?.coordinate)!
-        if let lat = location?.distance(from: signal_light_center) {
-            DataPakage_Distance =  Double(lat)
-            }
-        if state == 0{
-            if DataPakage_Distance < triger1{
-                state = 1
-            }
+        
+        //DataPakage_coordnate = (location?.coordinate)!
+        
+        if let c = location?.coordinate{
+            Data.revise_coordnate(newCoordnate: c)
         }
-        if state != 0 {
-            if DataPakage_Distance > triger1{
-                state = 0
+        
+        if let lat = location?.distance(from: Signal_Light.get_Signal_light_center()) {
+            //DataPakage_Distance =  Double(lat)
+            Data.revise_distance(newDistance: Double(lat))
             }
-            if DataPakage_Distance < triger2{
-                if triger_count == 0{
-                    state = 1
-                    triger_count += 1
-                }
-            }
-            if DataPakage_Distance > triger2 &&  triger_count == 1{
-                    state = 2
-                    triger_count = 0
-            }
-        }
-        //print("\(DataPakage_Course)  \(DataPakage_coordnate)  \(DataPakage_Distance)")
+        
+        state_check()
+        Stop_direction_check()
+        
+
         //print(getBearingBetweenTwoPoints1(point1 : signal_light_center, point2 : location!))
-        print(state)
+        //print(Data.get_course())
+        //print(state)
+        print("\(location?.coordinate.latitude) \(location?.coordinate.longitude) ")
+        //print(The_Direction_to_change_light_for)
         course.text = String(state)
     }
 
@@ -188,15 +244,15 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     func setupData() {
         
         
-        let TrigerOneCenter = CLLocationCoordinate2D(latitude: signal_light_center.coordinate.latitude, longitude: signal_light_center.coordinate.longitude)
-        let TrigerOne = GMSCircle(position: TrigerOneCenter, radius: triger1)
+        let TrigerOneCenter = CLLocationCoordinate2D(latitude: Signal_Light.get_Signal_light_center().coordinate.latitude, longitude: Signal_Light.get_Signal_light_center().coordinate.longitude)
+        let TrigerOne = GMSCircle(position: TrigerOneCenter, radius: Signal_Light.get_TrigerOne())
         TrigerOne.fillColor = UIColor(red: 0, green: 1.5, blue: 0, alpha: 0.05)
         TrigerOne.strokeColor = UIColor(red: 0.46, green: 0.76, blue: 0.20, alpha: 1.0)
         TrigerOne.strokeWidth = 4
         TrigerOne.map = Mapview
         
-        let TrigerTwoCenter = CLLocationCoordinate2D(latitude: signal_light_center.coordinate.latitude, longitude: signal_light_center.coordinate.longitude)
-        let TrigerTwo = GMSCircle(position: TrigerTwoCenter, radius: triger2)
+        let TrigerTwoCenter = CLLocationCoordinate2D(latitude: Signal_Light.get_Signal_light_center().coordinate.latitude, longitude: Signal_Light.get_Signal_light_center().coordinate.longitude)
+        let TrigerTwo = GMSCircle(position: TrigerTwoCenter, radius: Signal_Light.get_TrigerTwo())
         TrigerTwo.fillColor = UIColor(red: 1.5, green: 0, blue: 0, alpha: 0.05)
         TrigerTwo.strokeColor = UIColor(red: 0.88, green: 0.05, blue: 0.05, alpha: 1.0)
         TrigerTwo.strokeWidth = 4
@@ -215,8 +271,8 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     
     func Mapview_setup(){
-        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 48.857165, longitude: 2.354613, zoom: 10.0)
-        Mapview.camera = camera
+        //let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 0.0, longitude: 0.0, zoom: 1.0)
+        //Mapview.camera = camera
         do {
             // Set the map style by passing the URL of the local file.
             if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
