@@ -71,7 +71,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
             begin_stop_state = 1
             bb.setImage(UIImage(named: "stop_red.png"), for: .normal)
             Mapview.isHidden = false
-            self.locationManager.startUpdatingHeading()
+            //self.locationManager.startUpdatingHeading()
             self.locationManager.startUpdatingLocation()
         }
         else{
@@ -79,7 +79,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
             bb.setImage(UIImage(named: "run.png"), for: .normal)
             Mapview.isHidden = true
             self.locationManager.stopUpdatingLocation()
-            self.locationManager.stopUpdatingHeading()
+            //self.locationManager.stopUpdatingHeading()
         }
         print(begin_stop_state)
     }
@@ -226,12 +226,12 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         course.text = String(state)
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
-    {
-       
-        //print(newHeading.magneticHeading)
-       
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
+//    {
+//       
+//        //print(newHeading.magneticHeading)
+//       
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
