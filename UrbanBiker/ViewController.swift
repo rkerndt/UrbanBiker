@@ -11,6 +11,8 @@ import GoogleMaps
 import GooglePlaces
 import CoreLocation
 import AudioToolbox.AudioServices
+import UserNotifications
+import CoreMotion
 
 
 class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDelegate {
@@ -52,8 +54,15 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     var Data : DataPakage = DataPakage()
     
-    var Signal_Light : SignalLight = SignalLight.init(triger1: 20.0, triger2: 7.5, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0)
+    var Signal_Light : SignalLight = SignalLight.init(triger1: 20.0, triger2: 7.5, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 50.0)
     //end
+    
+    
+    var v :Double = 0.0
+    var d :Double = 0.0
+    var s_count : Double = 0.0
+    var motionManager = CMMotionManager()
+
     
     
     
@@ -84,6 +93,31 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         print(begin_stop_state)
     }
     
+   
+    func presentAlert() {
+        let alertController = UIAlertController(title: "Email?", message: "Please input your email:", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            if let field = alertController.textFields?[0] {
+                // store your data
+                UserDefaults.standard.set(field.text, forKey: "userEmail")
+                UserDefaults.standard.synchronize()
+            } else {
+                // user did not fill field
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Email"
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
@@ -91,8 +125,9 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         Signal_Light.revise_Signal_light_center(new: alder)
         Mapview_setup()
         setupData()
-       
     }
+   
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -107,6 +142,34 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
             locationManager.startUpdatingLocation()
         }
+        
+        
+        if UserDefaults.standard.string(forKey: "userEmail") == nil{
+            presentAlert()
+        }
+        
+        motionManager.accelerometerUpdateInterval = 0.5
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!){
+            (data,error) in
+            if let myData = data
+            {
+                print("\(String(describing: data?.acceleration.x)) \(String(describing: data?.acceleration.y)) \(String(describing: data?.acceleration.z))")
+                self.v = sqrt((data?.acceleration.x)!*(data?.acceleration.x)! + (data?.acceleration.y)! * (data?.acceleration.y)! + (data?.acceleration.z)! * (data?.acceleration.z)! )
+                self.d = abs(self.v-1)
+                print("diff is  \(String(self.d))")
+                if self.d>0.3{
+                    self.s_count += 1
+                    print(" steps is \(String(self.s_count))")
+                    self.course.text = String(self.s_count)
+
+                }
+            }
+            
+        }
+
+        
+        
+        
         
     }
     
@@ -138,12 +201,19 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         }
     }
     
+    func LetsVibrate(){
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+    }
+    
     func state_check(){
         if state == 0{
             if Data.get_distance() < Signal_Light.get_TrigerOne(){
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                LetsVibrate()
                 state = 1
+                
+                
+                
             }
         }
         if state != 0 {
@@ -159,14 +229,13 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
             if Data.get_distance() > Signal_Light.get_TrigerTwo() &&  triger_count == 1{
                 state = 2
                 triger_count = 0
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                LetsVibrate()
             }
         }
 
     }
     
-    func Stop_direction_check(){
+    func StopDirection_check(){
         
         if Data.get_course() < 45.0 && Data.get_course() > 315.0{
             The_Direction_to_change_light_for = "North"
@@ -215,15 +284,21 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
             }
         
         state_check()
-        Stop_direction_check()
+        StopDirection_check()
         
 
+        
+        
         //print(getBearingBetweenTwoPoints1(point1 : signal_light_center, point2 : location!))
         //print(Data.get_course())
         //print(state)
-        print("\(location?.coordinate.latitude) \(location?.coordinate.longitude) ")
+        //print("\(location?.coordinate.latitude) \(location?.coordinate.longitude) ")
         //print(The_Direction_to_change_light_for)
-        course.text = String(state)
+//        
+//        if let a  = UserDefaults.standard.string(forKey: "userEmail"){
+//            print(a)
+//        }
+        
     }
 
 //    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
@@ -257,6 +332,13 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         TrigerTwo.strokeColor = UIColor(red: 0.88, green: 0.05, blue: 0.05, alpha: 1.0)
         TrigerTwo.strokeWidth = 4
         TrigerTwo.map = Mapview
+        
+        let TrigerRCenter = CLLocationCoordinate2D(latitude: Signal_Light.get_Signal_light_center().coordinate.latitude, longitude: Signal_Light.get_Signal_light_center().coordinate.longitude)
+        let TrigerR = GMSCircle(position: TrigerRCenter, radius: Signal_Light.get_ReadyTriger())
+        TrigerR.fillColor = UIColor(red: 0, green: 0, blue: 1.5, alpha: 0.05)
+        TrigerR.strokeColor = UIColor(red: 0.3, green: 0.05, blue: 0.55, alpha: 1.0)
+        TrigerR.strokeWidth = 4
+        TrigerR.map = Mapview
         
     }
 
