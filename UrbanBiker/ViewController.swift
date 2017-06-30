@@ -16,6 +16,17 @@ import CoreMotion
 import MapKit
 
 
+
+
+
+var Data : DataPakage = DataPakage()
+var MODE = Mode()
+var sigList: [SignalLight] = []
+var The_one_signal_light:SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets")
+var state = 0
+var Step_count : Double = 0.0
+
+
 class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDelegate {
    
     var locationManager = CLLocationManager()
@@ -37,28 +48,27 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     var S_alder : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.040017, longitude: -123.080197), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "alder")
     var S_America : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 37.703026, longitude: -121.759735), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "America")
     
-    var The_one_signal_light:SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets")    //end
+       //end
     
 
     //This part is to create some variables which will be used in later's functions. No needs to change this part.
-    var state = 0
+    
     var triger_count = 0
     var The_Direction_to_change_light_for = ""
     
     
-    var Data : DataPakage = DataPakage()
+    //var Data : DataPakage = DataPakage()
     //20 7.5
-    var triger1vaule = 100.0
-    var triger2value = 60.0
-    var trigerreadyvaule = 200.0
+    var triger1vaule = 20.0
+    var triger2value = 7.5
+    var trigerreadyvaule = 100.0
     //var Signal_Light : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets")
     //end
     
-    var sigList: [SignalLight] = []
     
     var Vector :Double = 0.0
     var Difference :Double = 0.0
-    var Step_count : Double = 0.0
+    
     var motionManager = CMMotionManager()
 
     
@@ -70,7 +80,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     @IBOutlet var course: UILabel!
     
-    var MODE = Mode()
+   
     
     
     @IBOutlet var Mode_Change_Button: UIButton!
@@ -169,11 +179,12 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
                 self.Difference = abs(self.Vector-1)
                 //print("diff is  \(String(self.Difference))")
                 if self.Difference>0.3{
-                    self.Step_count += 1
+                    Step_count += 1
                     //print(" steps is \(String(self.Step_count))")
-                    self.course.text = String(self.Step_count)
+                    self.course.text = String(Step_count)
 
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "info"), object: nil)
             }
         }
 
@@ -245,6 +256,8 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         print(Data.get_coordnate())
         print("current signal light is \(The_one_signal_light.get_sig_name())")
         course.text = The_one_signal_light.get_sig_name()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "info"), object: nil)
+        
         //print(state)
         //print(getBearingBetweenTwoPoints1(point1 : signal_light_center, point2 : location!))
         
