@@ -19,12 +19,18 @@
 		718D1C1A1EF9CAB800230241 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C181EF9CAB800230241 /* LaunchScreen.storyboard */; };
 		718D1C251EF9CAB800230241 /* UrbanBikerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D1C241EF9CAB800230241 /* UrbanBikerTests.swift */; };
 		718D1C301EF9CAB800230241 /* UrbanBikerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D1C2F1EF9CAB800230241 /* UrbanBikerUITests.swift */; };
-		718D1C4D1EF9E2B500230241 /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C4C1EF9E2B500230241 /* run.png */; };
 		718D1C511EF9E2D100230241 /* stop_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C501EF9E2D100230241 /* stop_red.png */; };
 		718D1C531EF9E63500230241 /* bicycle300.png in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C521EF9E63500230241 /* bicycle300.png */; };
 		718D1C571EF9EBB500230241 /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C541EF9EBB500230241 /* iTunesArtwork@1x.png */; };
 		718D1C581EF9EBB500230241 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C551EF9EBB500230241 /* iTunesArtwork@2x.png */; };
 		718D1C591EF9EBB500230241 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C561EF9EBB500230241 /* iTunesArtwork@3x.png */; };
+		71C09AE41F05A39700D78F33 /* MotionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C09AE31F05A39700D78F33 /* MotionMode.swift */; };
+		71C09AE81F05A4D500D78F33 /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C09AE71F05A4D500D78F33 /* run.png */; };
+		71C09AEA1F05A55100D78F33 /* walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C09AE91F05A55100D78F33 /* walk.png */; };
+		71C09AEC1F05AB2000D78F33 /* bike.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C09AEB1F05AB2000D78F33 /* bike.png */; };
+		71C09AF01F05C38E00D78F33 /* over.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C09AEF1F05C38E00D78F33 /* over.png */; };
+		71C09AF21F05C3F500D78F33 /* go.gif in Resources */ = {isa = PBXBuildFile; fileRef = 71C09AF11F05C3F500D78F33 /* go.gif */; };
+		71C09AF41F05C6EC00D78F33 /* GGO.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71C09AF31F05C6EC00D78F33 /* GGO.jpg */; };
 		71E86BF81EFB2E2900B9FD9E /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 71E86BF71EFB2E2900B9FD9E /* style.json */; };
 		71E86BFA1EFC2BC000B9FD9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E86BF91EFC2BC000B9FD9E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -65,12 +71,18 @@
 		718D1C2B1EF9CAB800230241 /* UrbanBikerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UrbanBikerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		718D1C2F1EF9CAB800230241 /* UrbanBikerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbanBikerUITests.swift; sourceTree = "<group>"; };
 		718D1C311EF9CAB800230241 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		718D1C4C1EF9E2B500230241 /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
 		718D1C501EF9E2D100230241 /* stop_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop_red.png; sourceTree = "<group>"; };
 		718D1C521EF9E63500230241 /* bicycle300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bicycle300.png; sourceTree = "<group>"; };
 		718D1C541EF9EBB500230241 /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		718D1C551EF9EBB500230241 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		718D1C561EF9EBB500230241 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
+		71C09AE31F05A39700D78F33 /* MotionMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionMode.swift; sourceTree = "<group>"; };
+		71C09AE71F05A4D500D78F33 /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
+		71C09AE91F05A55100D78F33 /* walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk.png; sourceTree = "<group>"; };
+		71C09AEB1F05AB2000D78F33 /* bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bike.png; sourceTree = "<group>"; };
+		71C09AEF1F05C38E00D78F33 /* over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = over.png; sourceTree = "<group>"; };
+		71C09AF11F05C3F500D78F33 /* go.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = go.gif; sourceTree = "<group>"; };
+		71C09AF31F05C6EC00D78F33 /* GGO.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GGO.jpg; sourceTree = "<group>"; };
 		71E86BF71EFB2E2900B9FD9E /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		71E86BF91EFC2BC000B9FD9E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		97E99FF1B263CEE5E7EF45B3 /* Pods-UrbanBiker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrbanBiker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UrbanBiker/Pods-UrbanBiker.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,9 +132,14 @@
 				718D1C541EF9EBB500230241 /* iTunesArtwork@1x.png */,
 				718D1C551EF9EBB500230241 /* iTunesArtwork@2x.png */,
 				718D1C561EF9EBB500230241 /* iTunesArtwork@3x.png */,
+				71C09AE91F05A55100D78F33 /* walk.png */,
+				71C09AF31F05C6EC00D78F33 /* GGO.jpg */,
+				71C09AEF1F05C38E00D78F33 /* over.png */,
+				71C09AF11F05C3F500D78F33 /* go.gif */,
 				718D1C521EF9E63500230241 /* bicycle300.png */,
+				71C09AEB1F05AB2000D78F33 /* bike.png */,
+				71C09AE71F05A4D500D78F33 /* run.png */,
 				718D1C501EF9E2D100230241 /* stop_red.png */,
-				718D1C4C1EF9E2B500230241 /* run.png */,
 			);
 			name = "App's_Image";
 			sourceTree = "<group>";
@@ -157,6 +174,7 @@
 				71590BE31F017DB700F55E67 /* America.gpx */,
 				718D1C0C1EF9CAB800230241 /* AppDelegate.swift */,
 				718D1C0E1EF9CAB800230241 /* ViewController.swift */,
+				71C09AE31F05A39700D78F33 /* MotionMode.swift */,
 				71590BE61F01BA1600F55E67 /* SignalLight.swift */,
 				71590BE41F01B34C00F55E67 /* DataPakage.swift */,
 				718D1C101EF9CAB800230241 /* Main.storyboard */,
@@ -314,16 +332,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C09AE81F05A4D500D78F33 /* run.png in Resources */,
 				71E86BF81EFB2E2900B9FD9E /* style.json in Resources */,
+				71C09AEA1F05A55100D78F33 /* walk.png in Resources */,
+				71C09AF41F05C6EC00D78F33 /* GGO.jpg in Resources */,
 				712F18231EFAF0CE00EEECFA /* Podfile in Resources */,
 				712F181C1EF9F20B00EEECFA /* Images.xcassets in Resources */,
 				718D1C1A1EF9CAB800230241 /* LaunchScreen.storyboard in Resources */,
 				718D1C531EF9E63500230241 /* bicycle300.png in Resources */,
 				718D1C581EF9EBB500230241 /* iTunesArtwork@2x.png in Resources */,
+				71C09AEC1F05AB2000D78F33 /* bike.png in Resources */,
 				718D1C591EF9EBB500230241 /* iTunesArtwork@3x.png in Resources */,
+				71C09AF21F05C3F500D78F33 /* go.gif in Resources */,
+				71C09AF01F05C38E00D78F33 /* over.png in Resources */,
 				718D1C571EF9EBB500230241 /* iTunesArtwork@1x.png in Resources */,
 				718D1C121EF9CAB800230241 /* Main.storyboard in Resources */,
-				718D1C4D1EF9E2B500230241 /* run.png in Resources */,
 				718D1C511EF9E2D100230241 /* stop_red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C09AE41F05A39700D78F33 /* MotionMode.swift in Sources */,
 				718D1C0F1EF9CAB800230241 /* ViewController.swift in Sources */,
 				718D1C0D1EF9CAB800230241 /* AppDelegate.swift in Sources */,
 				71590BE51F01B34C00F55E67 /* DataPakage.swift in Sources */,

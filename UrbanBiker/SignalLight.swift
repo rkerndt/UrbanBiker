@@ -15,16 +15,18 @@ class SignalLight {
     private var TrigerTwo = 0.0
     private var ReadyTriger = 0.0
     private var Signal_light_center = CLLocation()
+    private var Signal_light_name = ""
     
     private var Degree_to_North = 0.0
     
     
-    init(triger1: Double, triger2: Double, signal_light_center:CLLocation, degree_to_north: Double, readytriger: Double) {
+    init(triger1: Double, triger2: Double, signal_light_center:CLLocation, degree_to_north: Double, readytriger: Double,Signal_light_name: String ) {
         self.TrigerOne = triger1
         self.TrigerTwo = triger2
         self.Signal_light_center = signal_light_center
         self.Degree_to_North = degree_to_north
         self.ReadyTriger = readytriger
+        self.Signal_light_name = Signal_light_name
     }
     
     func revise_TrigerOne (new: Double){
@@ -41,6 +43,10 @@ class SignalLight {
     }
     func revise_ReadyTriger (new: Double){
         self.ReadyTriger = new
+    }
+    func revise_sig_name(new:String){
+        self.Signal_light_name = new
+        
     }
     func get_TrigerOne()->Double{
         
@@ -62,6 +68,10 @@ class SignalLight {
     func get_ReadyTriger()->Double{
             
         return self.ReadyTriger
+    }
+    func get_sig_name() -> String{
+        
+        return self.Signal_light_name
     }
 
     
