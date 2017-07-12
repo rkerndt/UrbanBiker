@@ -52,7 +52,7 @@ class InfoViewController: UIViewController {
     }
     
     func print_Info(){
-        print("Got it!")
+        //print("Got it!")
         
         mode_label.text = MODE.get_mode_name()
         location_label.text = "(\(Data.get_coordnate().latitude), \(Data.get_coordnate().longitude))"

@@ -306,7 +306,7 @@
 				TargetAttributes = {
 					718D1C081EF9CAB800230241 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = C3GY434736;
+						DevelopmentTeam = MEW222LC72;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -607,7 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = C3GY434736;
+				DEVELOPMENT_TEAM = MEW222LC72;
 				INFOPLIST_FILE = UrbanBiker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -623,7 +623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = C3GY434736;
+				DEVELOPMENT_TEAM = MEW222LC72;
 				INFOPLIST_FILE = UrbanBiker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

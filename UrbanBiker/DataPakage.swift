@@ -14,10 +14,15 @@ class DataPakage {
     private var Course = 0.0
     private var Coordnate = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
     private var Distance = 0.0
+    private var triger_count = 0.0
     
+    func revise_triger_count(newtriger_count: Double){
+        self.triger_count = newtriger_count
+    }
     func revise_course(newCourse: Double){
         self.Course = newCourse
     }
+    
     
     func revise_coordnate(newCoordnate: CLLocationCoordinate2D){
         self.Coordnate = newCoordnate
@@ -37,5 +42,8 @@ class DataPakage {
     }
     func get_distance()->Double{
         return self.Distance
+    }
+    func get_triger_count()->Double{
+        return self.triger_count
     }
 }

@@ -17,7 +17,7 @@ import MapKit
 
 
 
-
+//global data
 
 var Data : DataPakage = DataPakage()
 var MODE = Mode()
@@ -25,6 +25,7 @@ var sigList: [SignalLight] = []
 var The_one_signal_light:SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets")
 var state = 0
 var Step_count : Double = 0.0
+
 
 
 class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDelegate {
@@ -36,9 +37,15 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     var begin_stop_state = 0
     //end
     
+    
+    var Vector :Double = 0.0
+    var Difference :Double = 0.0
+    var motionManager = CMMotionManager()
+    
 
-    //This part is to set the signal light center and add any other positions there
-    //var signal_light_center = CLLocation(latitude: 44.045489, longitude: -123.071530)
+
+    //This part is to set the signal light center and add any other positions there:
+    
     let America = CLLocation(latitude: 37.703026, longitude: -121.759735)
     let alder = CLLocation(latitude: 44.040017, longitude: -123.080197)
     let front_dechets = CLLocation(latitude: 44.045491, longitude: -123.071537)
@@ -53,24 +60,19 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
 
     //This part is to create some variables which will be used in later's functions. No needs to change this part.
     
-    var triger_count = 0
+   
     var The_Direction_to_change_light_for = ""
     
     
-    //var Data : DataPakage = DataPakage()
-    //20 7.5
-    var triger1vaule = 20.0
-    var triger2value = 7.5
-    var trigerreadyvaule = 100.0
-    //var Signal_Light : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets")
+   
+    //20 7.5  //50.0 28.0 80.0
+    var triger1vaule = 300.0
+    var triger2value = 200.0
+    var trigerreadyvaule = 80.0
+   
     //end
     
     
-    var Vector :Double = 0.0
-    var Difference :Double = 0.0
-    
-    var motionManager = CMMotionManager()
-
     
     
     
@@ -153,6 +155,10 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         sigList = [S_alder,S_America,S_front_dechets]
         Mapview_setup()
         setupData()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: { didAllow, error in
+            
+            
+        })
         
         
         
@@ -175,7 +181,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
             if let myData = data
             {
                 //print("\(String(describing: data?.acceleration.x)) \(String(describing: data?.acceleration.y)) \(String(describing: data?.acceleration.z))")
-                self.Vector = sqrt((data?.acceleration.x)!*(data?.acceleration.x)! + (data?.acceleration.y)! * (data?.acceleration.y)! + (data?.acceleration.z)! * (data?.acceleration.z)! )
+                self.Vector = sqrt((myData.acceleration.x)*(myData.acceleration.x) + (myData.acceleration.y) * (myData.acceleration.y) + (myData.acceleration.z) * (myData.acceleration.z) )
                 self.Difference = abs(self.Vector-1)
                 //print("diff is  \(String(self.Difference))")
                 if self.Difference>0.3{
@@ -188,36 +194,8 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
             }
         }
 
-        
-        
-        
-        
     }
     
-    
-    func runTimedCode() {
-       
-      //self.locationManager.startUpdatingLocation()
-      
-        print("start!!")
-        
-    }
-    
-    func check_closest_signal_light() -> SignalLight{
-        
-        var result = The_one_signal_light
-        var value_to_compare = Double.infinity
-        for i in sigList{
-            let d = i.get_Signal_light_center().distance(from: CLLocation(latitude: Data.get_coordnate().latitude,longitude: Data.get_coordnate().longitude))
-            if  d < value_to_compare{
-                value_to_compare = d
-                result = i
-            }
-        }
-        
-        return result
-        
-    }
     
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -229,37 +207,45 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:15)
         Mapview.animate(to: camera)
         
-        
         updateDataPakage(location: location!)
         The_one_signal_light = check_closest_signal_light()
-            
-        
-        
         state_check()
         
-        //Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
-        //print("start in 10 seconds")
-        //self.locationManager.stopUpdatingLocation()
-//        print("stopped")
+        let Background_state = UIApplication.shared.applicationState
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-//            self.locationManager.startUpdatingLocation()
-//            print(
-//                "Begin"
-//            
-//            )
-//            
-//            
-//        })
-       
-        //StopDirection_check()
+        if Background_state == .background {
+            print("background")
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
+            
+            
+           
+        }
+        else if Background_state == .active {
+           
+            // foreground
+        }
+
+        
+        
         print(Data.get_coordnate())
-        print("current signal light is \(The_one_signal_light.get_sig_name())")
+        print(location?.coordinate ?? "")
+        ////print("current signal light is \(The_one_signal_light.get_sig_name())")
         course.text = The_one_signal_light.get_sig_name()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "info"), object: nil)
         
-        //print(state)
+        //Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+        //self.locationManager.stopUpdatingLocation()
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
+        //            self.locationManager.startUpdatingLocation()
+        //            print(
+        //                "Begin"
+        //
+        //            )
+        //        })
+        //StopDirection_check()
         //print(getBearingBetweenTwoPoints1(point1 : signal_light_center, point2 : location!))
+
         
     }
 
@@ -282,6 +268,32 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     //Packages:
     
+    
+    func runTimedCode() {
+        
+        //self.locationManager.startUpdatingLocation()
+        
+        print("start!!")
+        
+    }
+    
+    func check_closest_signal_light() -> SignalLight{
+        
+        var result = The_one_signal_light
+        var value_to_compare = Double.infinity
+        for i in sigList{
+            let d = i.get_Signal_light_center().distance(from: CLLocation(latitude: Data.get_coordnate().latitude,longitude: Data.get_coordnate().longitude))
+            if  d < value_to_compare{
+                value_to_compare = d
+                result = i
+            }
+        }
+        
+        return result
+        
+    }
+
+    
     func updateDataPakage(location:CLLocation){
         
         let a = location.course
@@ -294,6 +306,8 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         
         let lat = location.distance(from: The_one_signal_light.get_Signal_light_center())
         Data.revise_distance(newDistance: Double(lat))
+        
+        
         
     }
 
@@ -378,31 +392,42 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     }
     
 
-    
+    var count = 0.0
     func state_check(){
+        count = count + 1
+        print(" count is \(count)")
         if state == 0{
             if Data.get_distance() < The_one_signal_light.get_TrigerOne(){
                 LetsVibrate()
+                notification_jump_out(title: "Trigger 1", subtitle: "TRIGGERED", body: "you have touched trigger 1")
+                sendJSON(to: "Trigger1")
                 state = 1
-                
-                
-                
+                print("1111111")
+    
             }
         }
-        if state != 0 {
+        else if state != 0 {
             if Data.get_distance() > The_one_signal_light.get_TrigerOne(){
                 state = 0
+                LetsVibrate()
+                notification_jump_out(title: "Trigger 0", subtitle: "TRIGGERED", body: "you have touched trigger 0")
+                print("000000")
             }
-            if Data.get_distance() < The_one_signal_light.get_TrigerTwo(){
-                if triger_count == 0{
+            else if Data.get_distance() < The_one_signal_light.get_TrigerTwo(){
+                if Data.get_triger_count() == 0{
                     state = 1
-                    triger_count += 1
+                    //triger_count += 1
+                    Data.revise_triger_count(newtriger_count: Data.get_triger_count() + 1)
+                    
                 }
             }
-            if Data.get_distance() > The_one_signal_light.get_TrigerTwo() &&  triger_count == 1{
+            else if Data.get_distance() > The_one_signal_light.get_TrigerTwo() &&  Data.get_triger_count() == 1{
                 state = 2
-                triger_count = 0
+                Data.revise_triger_count(newtriger_count: 0.0)
                 LetsVibrate()
+                notification_jump_out(title: "Trigger 2", subtitle: "TRIGGERED", body: "you have touched trigger 2")
+                sendJSON(to: "Trigger2")
+                print("222222")
             }
         }
         
@@ -465,6 +490,21 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         
         
     }
+    
+    func notification_jump_out(title: String, subtitle: String, body: String){
+        let content = UNMutableNotificationContent()
+        //let content = UNNotificationContent()
+        content.sound = UNNotificationSound.default()
+        content.title = title
+        content.subtitle = subtitle
+        content.body = body
+        content.badge = 1
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1 , repeats: false)
+        let request = UNNotificationRequest(identifier:"time Done", content: content, trigger : trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+    }
 
     func showAlert(_ title: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
@@ -475,6 +515,50 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
         
     }
     
+    func sendJSON(to: String) {
+       
+        let Direct = Data.get_course()
+        let Lon = Data.get_coordnate().longitude
+        let Lat = Data.get_coordnate().latitude
+        let Mod = MODE.get_mode_name()
+        let Sig = The_one_signal_light.get_sig_name()
+        var Email = ""
+        if UserDefaults.standard.string(forKey: "userEmail") != nil{
+            Email = UserDefaults.standard.string(forKey: "userEmail")!
+        }
+        
+        
+        let dict = ["trigger": to, "Direction":Direct, "Longtitude": Lon, "Latitude": Lat, "Mode": Mod, "Signal_light_name": Sig, "E-mail": Email] as [String: Any]
+
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            
+            
+            let url = NSURL(string: "http://ks.fastraq.bike/phase")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
+                if error != nil{
+                    //print(error?.localizedDescription)
+                    return
+                }
+                
+                do {
+                    let json =  try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        print(parseJSON)
+                    }
+                }
+            }
+            task.resume()
+        }
+
+    }
     
     func Mapview_setup(){
         //let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 0.0, longitude: 0.0, zoom: 1.0)
