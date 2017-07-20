@@ -22,7 +22,7 @@ import MapKit
 var Data : DataPakage = DataPakage()
 var MODE = Mode()
 var sigList: [SignalLight] = []
-var The_one_signal_light:SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets")
+var The_one_signal_light:SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets", changable: false)
 var state = 0
 var Step_count : Double = 0.0
 
@@ -50,10 +50,11 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     let alder = CLLocation(latitude: 44.040017, longitude: -123.080197)
     let front_dechets = CLLocation(latitude: 44.045491, longitude: -123.071537)
     
-    var S_front_dechets : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets")
+    var S_front_dechets : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "front_dechets",changable: true)
+    var S_alder : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.040017, longitude: -123.080197), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "alder",changable: true)
+    var S_America : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 37.703026, longitude: -121.759735), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "America",changable: true)
     
-    var S_alder : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.040017, longitude: -123.080197), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "alder")
-    var S_America : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 37.703026, longitude: -121.759735), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "America")
+    var S_static_siglight : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045490, longitude: -123.069765), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "static_siglight", changable: false)
     
        //end
     
@@ -66,8 +67,8 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
    
     //20 7.5  //50.0 28.0 80.0
-    var triger1vaule = 300.0
-    var triger2value = 200.0
+    var triger1vaule = 50.0
+    var triger2value = 28.0
     var trigerreadyvaule = 80.0
    
     //end
@@ -160,9 +161,9 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
             
         })
         
+       //  Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(greenWaive), userInfo: nil, repeats: true)
         
-        
-        //Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 120.0, target: self, selector: #selector(updateGPS), userInfo: nil, repeats: true)
        // var map: MKMapView
         
         
@@ -228,8 +229,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
 
         
         
-        print(Data.get_coordnate())
-        print(location?.coordinate ?? "")
+        
         ////print("current signal light is \(The_one_signal_light.get_sig_name())")
         course.text = The_one_signal_light.get_sig_name()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "info"), object: nil)
@@ -267,15 +267,19 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     
     
     //Packages:
+    var c = 0.0
+    var c2 = 0.0
+    var c3 = 0.0
     
     
-    func runTimedCode() {
+    func updateGPS() {
         
-        //self.locationManager.startUpdatingLocation()
+        sendGPSJSON()
         
         print("start!!")
         
     }
+  
     
     func check_closest_signal_light() -> SignalLight{
         
@@ -560,6 +564,52 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
 
     }
     
+    
+    func sendGPSJSON() {
+        
+        let Direct = Data.get_course()
+        let Lon = Data.get_coordnate().longitude
+        let Lat = Data.get_coordnate().latitude
+        let Mod = MODE.get_mode_name()
+        let Sig = The_one_signal_light.get_sig_name()
+        var Email = ""
+        if UserDefaults.standard.string(forKey: "userEmail") != nil{
+            Email = UserDefaults.standard.string(forKey: "userEmail")!
+        }
+        
+        
+        let dict = [ "Direction":Direct, "Longtitude": Lon, "Latitude": Lat, "Mode": Mod, "Signal_light_name": Sig, "E-mail": Email] as [String: Any]
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dict, options: []) {
+            
+            
+            let url = NSURL(string: "http://ks.fastraq.bike/log_gps")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "POST"
+            
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
+                if error != nil{
+                    //print(error?.localizedDescription)
+                    return
+                }
+                
+                do {
+                    let json =  try? JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+                    
+                    
+                    if let parseJSON = json {
+                        
+                        print(parseJSON)
+                    }
+                }
+            }
+            task.resume()
+        }
+        
+    }
+
     func Mapview_setup(){
         //let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 0.0, longitude: 0.0, zoom: 1.0)
         //Mapview.camera = camera
