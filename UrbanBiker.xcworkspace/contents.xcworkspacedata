@@ -11,6 +11,9 @@
       location = "group:../GeoTargeting-demo/GeoTargeting/America.gpx">
    </FileRef>
    <FileRef
+      location = "group:d.gpx">
+   </FileRef>
+   <FileRef
       location = "group:UrbanBiker.xcodeproj">
    </FileRef>
    <FileRef

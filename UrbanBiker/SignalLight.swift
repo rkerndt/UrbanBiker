@@ -19,7 +19,14 @@ class SignalLight {
     private var Signal_light_center = CLLocation()
     private var Signal_light_name = ""
     private var Changable = false
-    var r = 100.0
+    
+    var current_time = 1.0
+    
+    let green_interval = 27.0
+    let red_interval = 35.0
+    var current_state = "red"
+    
+    
     
    var circle = GMSCircle()
     
@@ -35,23 +42,26 @@ class SignalLight {
         self.ReadyTriger = readytriger
         self.Signal_light_name = Signal_light_name
         self.Changable = changable
-    }
-    func revise_circle(){
-        if r-10 >= 0{
-            r = r-10
-            
-        }
-        else{
-            r = 100
-        }
-        self.circle = GMSCircle(position: CLLocationCoordinate2D(latitude: Signal_light_center.coordinate.latitude, longitude: Signal_light_center.coordinate.longitude), radius: CLLocationDistance(r))
-        self.circle.fillColor = UIColor(red: 1, green: 1.5, blue: 0, alpha: 0.05)
-        self.circle.strokeColor = UIColor(red: 0.15, green: 0.45 , blue: 0.71, alpha: 0.7)
-        self.circle.strokeWidth = 20
         
-
-        
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(Time_Simulator), userInfo: nil, repeats: true)
     }
+    
+    @objc func Time_Simulator(){
+        self.current_time += 1
+        if self.current_time > green_interval + red_interval{
+            self.current_time = 1
+        }
+        if self.current_time <= red_interval{
+            current_state = "red"
+        }
+        else if self.current_time > red_interval{
+            current_state = "green"
+        }
+       // print("time is: \(self.current_time)  and now is \(current_state)")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "siglightUpdate"), object: nil)
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "info2"), object: nil)
+    }
+    
     func revise_TrigerOne (new: Double){
         self.TrigerOne = new
     }

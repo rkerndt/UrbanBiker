@@ -20,7 +20,6 @@ import MapKit
 
 
 
-
 class InfoViewController: UIViewController {
     
     @IBOutlet var mode_label: UILabel!

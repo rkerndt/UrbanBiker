@@ -15,6 +15,8 @@ class DataPakage {
     private var Coordnate = CLLocationCoordinate2D(latitude: 0.0,longitude: 0.0)
     private var Distance = 0.0
     private var triger_count = 0.0
+    private var speed = 0.0
+    private var location = CLLocation(latitude: 0.0, longitude: 0.0)
     
     func revise_triger_count(newtriger_count: Double){
         self.triger_count = newtriger_count
@@ -22,8 +24,9 @@ class DataPakage {
     func revise_course(newCourse: Double){
         self.Course = newCourse
     }
-    
-    
+    func revise_speed(newspeed: Double){
+        self.speed = newspeed
+    }
     func revise_coordnate(newCoordnate: CLLocationCoordinate2D){
         self.Coordnate = newCoordnate
     }
@@ -31,6 +34,16 @@ class DataPakage {
     func revise_distance(newDistance: Double){
         self.Distance = newDistance
     }
+    
+    func revise_location(newlocation: CLLocation){
+        self.location = newlocation
+    }
+    
+    func get_location()->CLLocation{
+        
+        return self.location
+    }
+
    
     func get_course()->Double{
         
@@ -45,5 +58,8 @@ class DataPakage {
     }
     func get_triger_count()->Double{
         return self.triger_count
+    }
+    func get_speed()->Double{
+        return self.speed
     }
 }

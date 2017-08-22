@@ -10,8 +10,16 @@
 		0525033CA63FCE7C4EF57C7A /* libPods-UrbanBiker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF92733E9F436B3C75B0FC2 /* libPods-UrbanBiker.a */; };
 		712F181C1EF9F20B00EEECFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 712F181B1EF9F20B00EEECFA /* Images.xcassets */; };
 		712F18231EFAF0CE00EEECFA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 712F18221EFAF0CE00EEECFA /* Podfile */; };
+		714767781F27EA5C008C08F7 /* GreenwaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714767771F27EA5C008C08F7 /* GreenwaveViewController.swift */; };
 		71590BE51F01B34C00F55E67 /* DataPakage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71590BE41F01B34C00F55E67 /* DataPakage.swift */; };
 		71590BE71F01BA1600F55E67 /* SignalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71590BE61F01BA1600F55E67 /* SignalLight.swift */; };
+		717D40211F438AD600C0CDF4 /* table2.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D40201F438AD600C0CDF4 /* table2.png */; };
+		717D40231F438B6C00C0CDF4 /* table.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D40221F438B6C00C0CDF4 /* table.png */; };
+		717D40251F438BBA00C0CDF4 /* t.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D40241F438BBA00C0CDF4 /* t.png */; };
+		717D40271F438D4A00C0CDF4 /* timebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D40261F438D4A00C0CDF4 /* timebackground.png */; };
+		717D40291F438EA600C0CDF4 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D40281F438EA600C0CDF4 /* b.png */; };
+		717D402B1F4395CA00C0CDF4 /* g.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D402A1F4395CA00C0CDF4 /* g.png */; };
+		717D402D1F4CD08800C0CDF4 /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717D402C1F4CD08800C0CDF4 /* CircleViewController.swift */; };
 		718D1C0D1EF9CAB800230241 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D1C0C1EF9CAB800230241 /* AppDelegate.swift */; };
 		718D1C0F1EF9CAB800230241 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718D1C0E1EF9CAB800230241 /* ViewController.swift */; };
 		718D1C121EF9CAB800230241 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718D1C101EF9CAB800230241 /* Main.storyboard */; };
@@ -38,6 +46,10 @@
 		71C09B001F06F1C500D78F33 /* siglight.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C09AFF1F06F1C500D78F33 /* siglight.png */; };
 		71C09B021F06F96600D78F33 /* state.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C09B011F06F96600D78F33 /* state.png */; };
 		71C09B041F06F9C700D78F33 /* steps.png in Resources */ = {isa = PBXBuildFile; fileRef = 71C09B031F06F9C700D78F33 /* steps.png */; };
+		71E594861F2A8441004FF578 /* good.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E594821F2A8441004FF578 /* good.png */; };
+		71E594881F2A8692004FF578 /* rabbit1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E594871F2A8692004FF578 /* rabbit1.png */; };
+		71E5948A1F2A86CA004FF578 /* turtle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E594891F2A86CA004FF578 /* turtle1.png */; };
+		71E5948C1F2A8787004FF578 /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E5948B1F2A8787004FF578 /* smile.png */; };
 		71E86BF81EFB2E2900B9FD9E /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 71E86BF71EFB2E2900B9FD9E /* style.json */; };
 		71E86BFA1EFC2BC000B9FD9E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E86BF91EFC2BC000B9FD9E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -62,9 +74,17 @@
 /* Begin PBXFileReference section */
 		712F181B1EF9F20B00EEECFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		712F18221EFAF0CE00EEECFA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		714767771F27EA5C008C08F7 /* GreenwaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreenwaveViewController.swift; sourceTree = "<group>"; };
 		71590BE31F017DB700F55E67 /* America.gpx */ = {isa = PBXFileReference; lastKnownFileType = file; name = America.gpx; path = ../../America.gpx; sourceTree = "<group>"; };
 		71590BE41F01B34C00F55E67 /* DataPakage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPakage.swift; sourceTree = "<group>"; };
 		71590BE61F01BA1600F55E67 /* SignalLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalLight.swift; sourceTree = "<group>"; };
+		717D40201F438AD600C0CDF4 /* table2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table2.png; sourceTree = "<group>"; };
+		717D40221F438B6C00C0CDF4 /* table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table.png; sourceTree = "<group>"; };
+		717D40241F438BBA00C0CDF4 /* t.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = t.png; sourceTree = "<group>"; };
+		717D40261F438D4A00C0CDF4 /* timebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timebackground.png; sourceTree = "<group>"; };
+		717D40281F438EA600C0CDF4 /* b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b.png; sourceTree = "<group>"; };
+		717D402A1F4395CA00C0CDF4 /* g.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g.png; sourceTree = "<group>"; };
+		717D402C1F4CD08800C0CDF4 /* CircleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
 		718D1C091EF9CAB800230241 /* UrbanBiker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrbanBiker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		718D1C0C1EF9CAB800230241 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718D1C0E1EF9CAB800230241 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +117,10 @@
 		71C09AFF1F06F1C500D78F33 /* siglight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = siglight.png; sourceTree = "<group>"; };
 		71C09B011F06F96600D78F33 /* state.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = state.png; sourceTree = "<group>"; };
 		71C09B031F06F9C700D78F33 /* steps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steps.png; sourceTree = "<group>"; };
+		71E594821F2A8441004FF578 /* good.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good.png; sourceTree = "<group>"; };
+		71E594871F2A8692004FF578 /* rabbit1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbit1.png; sourceTree = "<group>"; };
+		71E594891F2A86CA004FF578 /* turtle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle1.png; sourceTree = "<group>"; };
+		71E5948B1F2A8787004FF578 /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		71E86BF71EFB2E2900B9FD9E /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		71E86BF91EFC2BC000B9FD9E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		97E99FF1B263CEE5E7EF45B3 /* Pods-UrbanBiker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UrbanBiker.release.xcconfig"; path = "Pods/Target Support Files/Pods-UrbanBiker/Pods-UrbanBiker.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,7 +167,17 @@
 		712F18241EFAF17000EEECFA /* App's_Image */ = {
 			isa = PBXGroup;
 			children = (
+				717D402A1F4395CA00C0CDF4 /* g.png */,
+				71E5948B1F2A8787004FF578 /* smile.png */,
+				71E594891F2A86CA004FF578 /* turtle1.png */,
+				717D40201F438AD600C0CDF4 /* table2.png */,
+				71E594821F2A8441004FF578 /* good.png */,
+				717D40261F438D4A00C0CDF4 /* timebackground.png */,
+				71E594871F2A8692004FF578 /* rabbit1.png */,
+				717D40281F438EA600C0CDF4 /* b.png */,
+				717D40221F438B6C00C0CDF4 /* table.png */,
 				71C09AF91F06F1AF00D78F33 /* Mode.ico */,
+				717D40241F438BBA00C0CDF4 /* t.png */,
 				71C09B031F06F9C700D78F33 /* steps.png */,
 				71C09B011F06F96600D78F33 /* state.png */,
 				71C09AFD1F06F1BF00D78F33 /* direction.ico */,
@@ -193,12 +227,14 @@
 			children = (
 				71590BE31F017DB700F55E67 /* America.gpx */,
 				718D1C0C1EF9CAB800230241 /* AppDelegate.swift */,
-				718D1C0E1EF9CAB800230241 /* ViewController.swift */,
+				714767771F27EA5C008C08F7 /* GreenwaveViewController.swift */,
 				71C09AF51F06B13A00D78F33 /* InfoViewController.swift */,
+				718D1C0E1EF9CAB800230241 /* ViewController.swift */,
 				71C09AE31F05A39700D78F33 /* MotionMode.swift */,
 				71590BE61F01BA1600F55E67 /* SignalLight.swift */,
 				71590BE41F01B34C00F55E67 /* DataPakage.swift */,
 				718D1C101EF9CAB800230241 /* Main.storyboard */,
+				717D402C1F4CD08800C0CDF4 /* CircleViewController.swift */,
 				71E86BF71EFB2E2900B9FD9E /* style.json */,
 				718D1C181EF9CAB800230241 /* LaunchScreen.storyboard */,
 				718D1C1B1EF9CAB800230241 /* Info.plist */,
@@ -356,8 +392,11 @@
 				71C09AE81F05A4D500D78F33 /* run.png in Resources */,
 				71E86BF81EFB2E2900B9FD9E /* style.json in Resources */,
 				71C09AEA1F05A55100D78F33 /* walk.png in Resources */,
+				71E594881F2A8692004FF578 /* rabbit1.png in Resources */,
 				71C09AF41F05C6EC00D78F33 /* GGO.jpg in Resources */,
 				71C09B021F06F96600D78F33 /* state.png in Resources */,
+				717D40291F438EA600C0CDF4 /* b.png in Resources */,
+				71E594861F2A8441004FF578 /* good.png in Resources */,
 				71C09AFC1F06F1AF00D78F33 /* location.png in Resources */,
 				712F18231EFAF0CE00EEECFA /* Podfile in Resources */,
 				71C09B001F06F1C500D78F33 /* siglight.png in Resources */,
@@ -367,14 +406,21 @@
 				718D1C581EF9EBB500230241 /* iTunesArtwork@2x.png in Resources */,
 				71C09AFE1F06F1BF00D78F33 /* direction.ico in Resources */,
 				71C09AFB1F06F1AF00D78F33 /* Mode.ico in Resources */,
+				717D40251F438BBA00C0CDF4 /* t.png in Resources */,
 				71C09AEC1F05AB2000D78F33 /* bike.png in Resources */,
 				718D1C591EF9EBB500230241 /* iTunesArtwork@3x.png in Resources */,
+				717D40211F438AD600C0CDF4 /* table2.png in Resources */,
+				717D40271F438D4A00C0CDF4 /* timebackground.png in Resources */,
 				71C09AF21F05C3F500D78F33 /* go.gif in Resources */,
+				717D40231F438B6C00C0CDF4 /* table.png in Resources */,
 				71C09AF01F05C38E00D78F33 /* over.png in Resources */,
+				71E5948C1F2A8787004FF578 /* smile.png in Resources */,
 				718D1C571EF9EBB500230241 /* iTunesArtwork@1x.png in Resources */,
 				71C09B041F06F9C700D78F33 /* steps.png in Resources */,
 				718D1C121EF9CAB800230241 /* Main.storyboard in Resources */,
+				71E5948A1F2A86CA004FF578 /* turtle1.png in Resources */,
 				718D1C511EF9E2D100230241 /* stop_red.png in Resources */,
+				717D402B1F4395CA00C0CDF4 /* g.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +495,9 @@
 			files = (
 				71C09AE41F05A39700D78F33 /* MotionMode.swift in Sources */,
 				718D1C0F1EF9CAB800230241 /* ViewController.swift in Sources */,
+				717D402D1F4CD08800C0CDF4 /* CircleViewController.swift in Sources */,
 				718D1C0D1EF9CAB800230241 /* AppDelegate.swift in Sources */,
+				714767781F27EA5C008C08F7 /* GreenwaveViewController.swift in Sources */,
 				71C09AF61F06B13A00D78F33 /* InfoViewController.swift in Sources */,
 				71590BE51F01B34C00F55E67 /* DataPakage.swift in Sources */,
 				71590BE71F01BA1600F55E67 /* SignalLight.swift in Sources */,
@@ -609,7 +657,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = MEW222LC72;
 				INFOPLIST_FILE = UrbanBiker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.NO-1.UrbanBiker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -625,7 +673,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = MEW222LC72;
 				INFOPLIST_FILE = UrbanBiker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.NO-1.UrbanBiker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
