@@ -53,6 +53,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     let front_dechets = CLLocation(latitude: 44.045491, longitude: -123.071537)
     let deschutes_2 = CLLocation(latitude: 44.045483, longitude:  -123.073221)
     let deschutes_3 = CLLocation(latitude: 44.045497, longitude:  -123.075030)
+    let centennial_pioneer = CLLocation(latitude: 44.056664, longitude: -123.023882)
     
     var S_front_dechets : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045491, longitude: -123.071537), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "deschutes",changable: true)
     var S_front_dechets_2 : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045483, longitude:  -123.073221), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "deschutes_2",changable: true)
@@ -61,6 +62,8 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     var S_America : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 37.703026, longitude: -121.759735), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "America",changable: true)
     
     var S_static_siglight : SignalLight = SignalLight.init(triger1: 100, triger2: 60, signal_light_center: CLLocation(latitude: 44.045490, longitude: -123.069765), degree_to_north: 0.0, readytriger: 200, Signal_light_name: "static_siglight", changable: true)
+    
+    var S_centennial_pioneer : SignalLight = SignalLight.init(triger1:290, triger2: 90, signal_light_center: CLLocation(latitude: 44.056709, longitude: -123.024077), degree_to_north: 0.0, readytriger: 300, Signal_light_name: "centennial_pioneer", changable: true)
     
        //end
     
@@ -159,7 +162,7 @@ class ViewController: UIViewController, GMSMapViewDelegate,CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sigList = [S_alder,S_America,S_front_dechets,S_front_dechets_2,S_front_dechets_3]
+        sigList = [S_alder,S_America,S_front_dechets,S_front_dechets_2,S_front_dechets_3, S_centennial_pioneer]
         Mapview_setup()
         setupData()
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: { didAllow, error in
